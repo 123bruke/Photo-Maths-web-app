@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo-Maths Solver</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>Mini Photo-Maths Solver</h1>
+
+    <form action="/solve_text" method="POST">
+        <input type="text" name="equation" placeholder="Enter equation" required>
+        <button type="submit">Solve Text</button>
+    </form>
+
+    <h3>OR Upload Image</h3>
+    <form action="/solve_image" method="POST" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <button type="submit">Solve Image</button>
+    </form>
+
+    {% if result %}
+        <h2>🧠 Result:</h2>
+        <p><strong>{{ result }}</strong></p>
+    {% endif %}
+</body>
+</html>
