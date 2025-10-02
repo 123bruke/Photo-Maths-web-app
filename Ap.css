@@ -1,0 +1,15 @@
+#simple css style.
+
+---
+
+# 💄 5. `static/style.css`
+
+```css
+body {
+    font-family: Arial;
+    padding: 20px;
+}
+input, button {
+    padding: 10px;
+    margin: 5px;
+}
