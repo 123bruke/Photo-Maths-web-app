@@ -5,4 +5,4 @@ pytesseract
 opencv-python
 numpy
 tensorflow
-
+openai
