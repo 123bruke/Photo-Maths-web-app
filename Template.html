@@ -1,26 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Photo-Maths Solver</title>
-    <link rel="stylesheet" href="/static/style.css">
+<meta charset="UTF-8">
+<title>MathAI – Photo Maths Solver</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+<div class="bubbles" id="bubbles"></div>
+
+<nav>
+    <div class="logo"><i class="fa-solid fa-brain"></i> MathAI</div>
+    <div>
+        <button class="nav-btn" onclick="toggleHistory()"><i class="fa-solid fa-clock-rotate-left"></i></button>
+        <button class="nav-btn" onclick="toggleMode()"><i class="fa-solid fa-moon"></i></button>
+        <button class="nav-btn" onclick="toggleAccount()"><i class="fa-solid fa-user"></i></button>
+    </div>
+</nav>
+
+<div class="container">
+
+<aside class="history" id="history">
+    <li>x² + 5x = 0</li>
+    <li>∫x² dx</li>
+    <li>√(16x)</li>
+</aside>
+
+<main>
     <h1>Mini Photo-Maths Solver</h1>
+    <p class="subtitle">Text • Image • Voice • AI</p>
 
-    <form action="/solve_text" method="POST">
-        <input type="text" name="equation" placeholder="Enter equation" required>
-        <button type="submit">Solve Text</button>
+    <form class="form-box">
+        <div style="position:relative">
+            <button type="button" class="plus-btn" onclick="toggleMenu()">
+                <i class="fa-solid fa-plus"></i>
+            </button>
+            <div class="plus-menu" id="menu">
+                <div><i class="fa-solid fa-file"></i> File</div>
+                <div><i class="fa-solid fa-image"></i> Photo</div>
+            </div>
+        </div>
+
+        <div class="input-wrap">
+            <input type="text" placeholder="Type your math problem…">
+        </div>
+
+        <button type="button" class="mic-btn"><i class="fa-solid fa-microphone"></i></button>
+        <button class="send-btn"><i class="fa-solid fa-paper-plane"></i></button>
     </form>
+</main>
+</div>
 
-    <h3>OR Upload Image</h3>
-    <form action="/solve_image" method="POST" enctype="multipart/form-data">
-        <input type="file" name="image" required>
-        <button type="submit">Solve Image</button>
-    </form>
+<div class="account-modal" id="account">
+    <div class="account-box">
+        <span class="close" onclick="toggleAccount()">✖</span>
+        <h2>Account</h2>
+        <input placeholder="Username">
+        <input placeholder="Email">
+        <input type="password" placeholder="Password">
+        <button class="account-btn">Create Account</button>
+    </div>
+</div>
 
-    {% if result %}
-        <h2>🧠 Result:</h2>
-        <p><strong>{{ result }}</strong></p>
-    {% endif %}
+<script>
+const bubbleBox=document.getElementById("bubbles");
+for(let i=0;i<50;i++){
+    let s=document.createElement("span");
+    let size=6+Math.random()*14;
+    s.style.width=s.style.height=size+"px";
+    s.style.left=(i*(360/50))%100+"%";
+    s.style.animationDuration=8+Math.random()*8+"s";
+    bubbleBox.appendChild(s);
+}
+
+function toggleMenu(){
+    const m=document.getElementById("menu");
+    m.style.display=m.style.display==="block"?"none":"block";
+}
+function toggleMode(){
+    document.body.classList.toggle("light");
+}
+function toggleHistory(){
+    const h=document.getElementById("history");
+    h.style.display=h.style.display==="block"?"none":"block";
+}
+function toggleAccount(){
+    const a=document.getElementById("account");
+    a.style.display=a.style.display==="flex"?"none":"flex";
+}
+</script>
+
 </body>
 </html>
